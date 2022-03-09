@@ -1,1 +1,1 @@
-genius doesn't talk shit.
+doesn't talk shit.
