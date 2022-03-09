@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function fun() {
+        console.log("arguments=" + arguments);
+      }
+
+      fun(); //arguments=[object Arguments]
+
+      //使用arguments对象查看实参
+      function fun2() {
+        console.log("第一个参数是:" + arguments[0]);
+        console.log("有" + arguments.length + "个参数");
+      }
+
+      fun2(1, 2, "wanker"); //第一个参数是:1  有3个参数
+
+      //使用arguments修改实参修改
+      function fun3(a, b) {
+        arguments[0] = 1; //将第一个实参修改为1
+        arguments[1] = "hello";
+        console.log("调用时不管传什么实参,函数的第一个实参都是" + arguments[0]);
+        console.log("调用时不管传什么实参,函数的第二个实参都是" + arguments[1]);
+      }
+      fun3(2, 3); //传入实参2，3
+      //调用时不管传什么实参,函数的第一个实参都是1
+      //调用时不管传什么实参,函数的第二个实参都是hello
+    </script>
+  </head>
+  <body></body>
+</html>
