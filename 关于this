@@ -1,1 +1,5 @@
-
+目前的学习进度中，this有四种情况
+1.函数普通调用时：fun(); >>>> this指向window
+2.以方法调用时：obj.fun(); >>>> this指向obj
+3.构造函数:var obj2 =new fun(para1,para2...); >>>>this指向obj2
+4.调用函数时使用call()或apply()方法:fun.call(obj3,para1,para2); >>>> this指向obj3;  fun.apply(obj4,[para1,para2]) >>>> this指向obj4
