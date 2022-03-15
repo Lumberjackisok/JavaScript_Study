@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fuck flag and multi loop</title>
+    <script>
+      //flag and multi loop
+      window.onload = function () {
+        //定义一个获取按钮id的方法
+        function myClick(btnId, fun) {
+          var btn = document.getElementById(btnId);
+          btn.onclick = fun;
+        }
+        //在全局变量中获取items
+        var items = document.getElementsByName("items");
+
+        //获取全选按钮
+        myClick("checkedAllBtn", function () {
+          //点击全选按钮后，所有选项为全选状态
+          for (var i = 0; i < items.length; i++) {
+            items[i].checked = true;
+          }
+          checkAllBox.checked = true; //当点击全选按钮时，checkAllBox也应该是选中状态
+        });
+
+        //获取全不选按钮
+        myClick("checkedNoBtn", function () {
+          for (var i = 0; i < items.length; i++) {
+            items[i].checked = false;
+          }
+          checkAllBox.checked = false; //当点击全不选按钮时，checkAllBox也应该是非选中状态
+        });
+
+        //获取反选按钮
+        //点击反选按钮后，当items[i]全部为选中状态时，checkAllBox也应该为选中状态
+        myClick("checkedRevBtn", function () {
+          for (var i = 0; i < items.length; i++) {
+            items[i].checked = !items[i].checked;
+            var flag = true;
+
+            for (var k = 0; k < items.length; k++) {
+              if (!items[k].checked) {
+                flag = false;
+                break;
+              }
+            }
+            checkAllBox.checked = flag;
+          }
+        });
+
+        //获取发送按钮
+        myClick("checkesendBtn", function () {
+          for (var i = 0; i < items.length; i++) {
+            if (items[i].checked) {
+              alert(items[i].value);
+            }
+          }
+        });
+
+        /*
+        顶部全选/全不选选项 checkAllBox
+        当四个选项栏全为选中状态时，checkAllBox.checked=true，
+        当某个选项栏onclick时，判断所有选项栏是否为选中状态
+
+        双层嵌套循环
+        flag立在第一层循环，默认为true
+        第一层循环，当点击一个选项栏按钮时，进入第二层循环，判断所有按钮的checked状态
+
+        第二层循环判断四个选项栏的选中状态是否为false
+        如果为false，则flag=false,
+        只要有一次flag为false，checkAllBox的选中状态也是false，
+        只有当执行完第二层循环后，flag依然为true，则checkAllBox.checked也应该为true
+
+        checkAllBox.checked=flag
+
+        易错点：
+        进入二层循环判断items[j].checked==true，如果为true则checkAllBox.checked也为true,
+        这样做忽略了for循环的执行流程及变量迭代是线性的，
+        也就是说,items[0].checked=true,items[1].checked=true,items[2].checked=true,
+        但是items[3].checked也许是false,也有可能是items[0].checked=true,但items[1].checked=false,
+        所以，要判断所有itmes的checked状态需要让所有的items.checked都判断一遍，
+        所以需要在第一层循环内立一个flag
+
+        */
+        //获取checkAllBox
+        var checkAllBox = document.getElementById("checkAllBox");
+        checkAllBox.onclick = function () {
+          for (var i = 0; i < items.length; i++) {
+            items[i].checked = checkAllBox.checked;
+          }
+        };
+
+        for (var i = 0; i < items.length; i++) {
+          items[i].onclick = function () {
+            var flag = true;
+
+            for (var k = 0; k < items.length; k++) {
+              if (!items[k].checked) {
+                flag = false;
+                break;
+              }
+            }
+            checkAllBox.checked = flag;
+          };
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <form method="post" action="">
+      你爱好的运动是？<input
+        type="checkbox"
+        id="checkAllBox"
+      />全选/全不选(Select all)
+      <br />
+      <input type="checkbox" name="items" value="Sex" />sex
+      <input
+        type="checkbox"
+        name="items"
+        value="Fighting with others"
+      />Fighting with others
+      <input type="checkbox" name="items" value="Sleeping" />Sleeping
+      <input type="checkbox" name="items" value="Masturbation" />Masturbation
+      <br />
+      <input type="button" id="checkedAllBtn" value="全选" />
+      <input type="button" id="checkedNoBtn" value="全不选" />
+      <input type="button" id="checkedRevBtn" value="反选" />
+      <input type="button" id="checkesendBtn" value="提交" />
+    </form>
+  </body>
+</html>
