@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /*
+      对象（或数组）深拷贝，改变原对象属性或方法，拷贝对象不改变
+      */
+
+      var productInfo = [
+        {
+          cloths: [
+            { childClothCount: 100, childClothPrice: 150 },
+            { adultClothCount: 50, adultClothPrice: 210 },
+          ],
+
+          Pants: [
+            { childPantsCount: 90, childPantsPrice: 99 },
+            { adultPantsCount: 200, adultPantsPrice: 159 },
+          ],
+        },
+        {
+          books: [
+            { childBooksCount: 500, childBooksPrice: 20 },
+            { adultBooksCount: 800, adultBooksPrice: 32 },
+          ],
+          videos: [
+            { childVideosCount: 400, childVideosPrice: 24 },
+            { adultVideosCount: 1000, adultVideosPrice: 35 },
+          ],
+        },
+      ];
+
+      console.log(productInfo); //测试
+      console.log(productInfo[0].cloths); //测试
+      console.log(productInfo[0] && typeof productInfo[0]); //object
+
+      //深拷贝
+      function myDeepClone(obj) {
+        //如果传进来的原对象是数组，则要克隆的对象也是数组，反之为对象
+        let myCloenObj = Array.isArray(obj) ? new Array() : new Object();
+
+        for (let i = 0; i < obj.length; i++) {
+          myCloenObj.push({}); //深拷贝关键，每个下标创建一个新的空对象
+          //判断对应下标的内容是否为对象
+          if (obj[i] && typeof obj[i] === "object") {
+            for (var key in obj[i]) {
+              myCloenObj[i][key] = obj[i][key]; //将原对象赋给新对象里新创建的对象
+              for (let k = 0; k < obj[i][key].length; k++) {
+                for (var key2 in obj[i][key][k]) {
+                  myCloenObj[i][key][k][key2] = obj[i][key][k][key2];
+                }
+              }
+            }
+          }
+        }
+
+        return myCloenObj;
+      }
+
+      var myClone = myDeepClone(productInfo);
+      console.log("----------------------------------");
+      console.log("----------------------------------");
+      console.log("----------------------------------");
+      console.log(myClone); //输出克隆后的对象，为改变
+      console.log("----------------------------------");
+      console.log(productInfo); //输出原对象
+
+      //修改原对象
+      productInfo[0].cloths = [
+        { childClothCount: 10000, childClothPrice: 1050 },
+        { adultClothCount: 500, adultClothPrice: 2100 },
+      ];
+      console.log("----------------------------------");
+      console.log("----------------------------------");
+      console.log(productInfo); //输出原对象
+      console.log("----------------------------------");
+      console.log("----------------------------------");
+      console.log("----------------------------------");
+      console.log("----------------------------------");
+      console.log("----------------------------------");
+      console.log("----------------------------------");
+      console.log(myClone); //输出克隆后的对象，未改变
+    </script>
+  </head>
+  <body></body>
+</html>
