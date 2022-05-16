@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 1000px;
+        height: 600px;
+        margin: 50px auto;
+        background: url(imgs/bg.jpg) no-repeat;
+        position: relative;
+      }
+      li {
+        list-style: none;
+      }
+      /* .box ul li {
+        background-color: brown;
+        width: 168px;
+        height: 100px;
+        border-radius: 50%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        cursor: url(imgs/cur.png), auto;
+      } */
+
+      .li1 {
+        left: 240px;
+        top: 207px;
+        background-color: brown;
+        width: 168px;
+        height: 100px;
+        border-radius: 50%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        cursor: url(imgs/cur.png), auto;
+      }
+      .li2 {
+        left: 435px;
+        top: 213px;
+        background-color: brown;
+        width: 168px;
+        height: 100px;
+        border-radius: 50%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        cursor: url(imgs/cur.png), auto;
+      }
+      .li3 {
+        left: 619px;
+        top: 216px;
+        background-color: brown;
+        width: 168px;
+        height: 100px;
+        border-radius: 50%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        cursor: url(imgs/cur.png), auto;
+      }
+      .li4 {
+        left: 207px;
+        top: 344px;
+        background-color: brown;
+        width: 168px;
+        height: 100px;
+        border-radius: 50%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        cursor: url(imgs/cur.png), auto;
+      }
+      .li5 {
+        left: 429px;
+        top: 347px;
+        background-color: brown;
+        width: 168px;
+        height: 100px;
+        border-radius: 50%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        cursor: url(imgs/cur.png), auto;
+      }
+      .li6 {
+        left: 648px;
+        top: 345px;
+        background-color: brown;
+        width: 168px;
+        height: 100px;
+        border-radius: 50%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        cursor: url(imgs/cur.png), auto;
+      }
+      .li7 {
+        left: 180px;
+        top: 495px;
+        background-color: brown;
+        width: 168px;
+        height: 100px;
+        border-radius: 50%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        cursor: url(imgs/cur.png), auto;
+      }
+      .li8 {
+        left: 425px;
+        top: 499px;
+        background-color: brown;
+        width: 168px;
+        height: 100px;
+        border-radius: 50%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        cursor: url(imgs/cur.png), auto;
+      }
+      .li9 {
+        left: 669px;
+        top: 498px;
+        background-color: brown;
+        width: 168px;
+        height: 100px;
+        border-radius: 50%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        cursor: url(imgs/cur.png), auto;
+      }
+      /* .box ul li img {
+        position: relative;
+      } */
+      .start {
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        cursor: pointer;
+      }
+      .jinduBOx {
+        width: 200px;
+        height: 45px;
+        position: absolute;
+        left: 410px;
+        top: 10px;
+        border: 1px solid black;
+      }
+      .jinduBOx span {
+        position: absolute;
+        background-color: brown;
+        width: 100%;
+        height: 45px;
+      }
+      .jinduBOx span i {
+        color: white;
+        line-height: 45px;
+      }
+      .countBox {
+        width: 60px;
+        height: 30px;
+        border: 1px solid darkblue;
+        position: absolute;
+        top: 54px;
+        left: 132px;
+        color: white;
+      }
+      #playerlist {
+        width: 120px;
+        height: 100%;
+        /* border: 1px solid rgb(1, 15, 7); */
+        position: absolute;
+        left: 1004px;
+        top: -17px;
+      }
+      #playerlist li {
+        margin-top: 30px;
+        background-color: white;
+        border-radius: 0%;
+        color: black;
+        width: 100%;
+        height: 50px;
+        border-bottom: 1px solid black;
+      }
+      #playerlist li i {
+        color: white;
+        padding: 6px 12px;
+        margin-left: -40px;
+        width: 15px;
+        height: 15px;
+        background-color: rgb(110, 110, 118);
+        border-radius: 50%;
+        margin-right: 20px;
+      }
+      #playerlist li span {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="countBox"></div>
+      <ul id="playerlist"></ul>
+      <div class="jinduBOx">
+        <span><i>100%</i></span>
+      </div>
+      <ul>
+        <li class="li1"></li>
+        <li class="li2"></li>
+        <li class="li3"></li>
+        <li class="li4"></li>
+        <li class="li5"></li>
+        <li class="li6"></li>
+        <li class="li7"></li>
+        <li class="li8"></li>
+        <li class="li9"></li>
+      </ul>
+      <div class="start">
+        <img src="imgs/start.png" alt="" />
+      </div>
+    </div>
+
+    <script>
+      var lis = document.querySelectorAll(".box ul li");
+      var startBtn = document.querySelector(".start");
+      var jindu = document.querySelector(".jinduBOx span");
+      var jinduInner = document.querySelector(".jinduBOx span i");
+      var countBox = document.querySelector(".countBox");
+      var playerlist = document.getElementById("playerlist");
+      var playerCount = 0;
+      var jinduTime = 100;
+      var userInfo;
+      var userInfoIndex = -1;
+      window.onload = function () {
+        console.log(localStorage.getItem("userInfo"));
+
+        //判断转为json格式后的信息是否为null，即用户信息是否装入了数组，如果为null，则初始化数组，如果不为null则将其解析出来
+        userInfo =
+          JSON.parse(localStorage.getItem("userInfo")) == null
+            ? []
+            : JSON.parse(localStorage.getItem("userInfo"));
+        writeInfo();
+      };
+
+      var count = 0;
+
+      var myTimer;
+      function start() {
+        myTimer = setInterval(function () {
+          startBtn.style.display = "none";
+          // 进度条
+          jinduTime--;
+          jindu.style.width = jinduTime + "%";
+          jinduInner.innerHTML = jinduTime + "%";
+
+          var index = Math.floor(Math.random() * 6);
+          var liIndex = Math.floor(Math.random() * 9);
+          var myImg = document.createElement("img");
+          myImg.src = "imgs/" + index + ".png";
+          if (!lis[liIndex].childNodes[0]) {
+            lis[liIndex].append(myImg);
+            setTimeout(function () {
+              if (lis[liIndex].childNodes[0]) {
+                lis[liIndex].childNodes[0].remove();
+              }
+            }, 1000);
+          }
+
+          lis[liIndex].onclick = function () {
+            if (this.childNodes[0]) {
+              this.childNodes[0].remove();
+              count += 5;
+              countBox.innerHTML = count;
+            } else {
+              count -= 5;
+              countBox.innerHTML = count;
+            }
+          };
+
+          if (jinduTime == 0) {
+            startBtn.style.display = "block";
+            clearInterval(myTimer);
+
+            countBox.innerHTML = count;
+            // var playerli = document.createElement("li");
+            // playerlist.append(playerli);
+
+            var player = prompt("输入你的名字");
+
+            userInfo.push({
+              nickName: player,
+              score: count,
+            });
+
+            //将用户信息以json格式存储到本地
+            localStorage.setItem("userInfo", JSON.stringify(userInfo));
+
+            playerCount++;
+
+            if (player != "") {
+              countBox.innerHTML = 0;
+            }
+          }
+          writeInfo();
+        }, 30);
+      }
+
+      startBtn.onclick = function () {
+        countBox.innerHTML = 0;
+        clearInterval(myTimer);
+        start();
+        count = 0;
+
+        jindu.style.width = "100%";
+        jinduInner.innerHTML = "100%";
+        jinduTime = 100;
+        console.log(userInfo);
+      };
+
+      //在页面输出玩家信息
+      function writeInfo() {
+        userInfo.sort(function (a, b) {
+          return b.score - a.score;
+        });
+        var creatLi = "";
+        for (var i = 0; i < userInfo.length; i++) {
+          creatLi +=
+            "<li>昵称:" +
+            userInfo[i].nickName +
+            ";成绩:" +
+            userInfo[i].score +
+            "</li>";
+        }
+        playerlist.innerHTML = creatLi;
+      }
+    </script>
+  </body>
+</html>
